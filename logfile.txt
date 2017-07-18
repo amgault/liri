@@ -1,0 +1,28 @@
+---------------------------------------------------------------------------------------------
+Title: Rookie of the Year
+Release Year: 1993
+IMBD Rating: 5.9
+Rotten Tomatoes Rating: 39%
+Actors: Thomas Ian Nicholas, Gary Busey, Albert Hall, Amy Morton
+Plot: When an accident miraculously gives a boy an incredibly powerful pitching arm, he becomes a major league pitcher for the Chicago Cubs.
+Language: English
+Production Country(ies): USA
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+Artist(s): All I Ask
+Song Title: Adele
+Album: 25
+Preview Link: spotify:artist:4dpARuHxo51G3z768sgnrY
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Time: Tue Jul 18 16:34:02 +0000 2017
+Tweet: This is an image https://t.co/0Kctfp6Juo
+---------------------------------------------------------------------------------------------
+Time: Tue Jul 18 16:22:46 +0000 2017
+Tweet: Trying to test liri bot!
+---------------------------------------------------------------------------------------------
+Time: Tue Jul 18 16:17:29 +0000 2017
+Tweet: This is my first tweet!
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+You did not enter a valid command. Please enter one of the following: do-what-it-says, my-tweets, spotify-this-song, or movie-this.
+---------------------------------------------------------------------------------------------

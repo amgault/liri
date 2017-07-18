@@ -19,7 +19,8 @@ function getThing(callback) {
 
 // Determines which command is being called
 function doThis(thing) {
-    console.log(thing);
+    var logs = '';
+    // console.log(thing);
     if(command === 'do-what-it-says') {
         fs.readFile('random.txt', 'utf8', (err, data) => doWhatItSays(err, data));   
     } else if(command === 'my-tweets') {
@@ -29,14 +30,18 @@ function doThis(thing) {
     } else if(command === 'movie-this') {
         movieThis(thing);
     } else {
-        console.log('---------------------------------------------------------------------------------------------');
-        console.log('You did not enter a valid command. Please enter one of the following: do-what-it-says, my-tweets, spotify-this-song, or movie-this.');
-        console.log('---------------------------------------------------------------------------------------------');
+        logs += '---------------------------------------------------------------------------------------------\n';
+        logs += 'You did not enter a valid command. Please enter one of the following: do-what-it-says, my-tweets, spotify-this-song, or movie-this.\n';
+        logs += '---------------------------------------------------------------------------------------------\n';
+        console.log(logs);
+        logResponse(logs);
     }
 }
 
 // Runs the my-tweets command
 function myTweets() {
+    var logs = '';
+
     var client = new twitter({
         consumer_key: keys.twitterKeys.consumer_key,
         consumer_secret: keys.twitterKeys.consumer_secret,
@@ -46,23 +51,27 @@ function myTweets() {
 
     var params = {screen_name: 'amandagualt', count: 20};
     client.get('statuses/user_timeline', params, function(err, tweets, response) {
-        console.log("yay");
+        
         if(err) {
-            console.log('error: ' + err);
+            logs + = 'error: ' + err + '\n';
         }
         if (!err) {
-            console.log('---------------------------------------------------------------------------------------------');
+            logs += '---------------------------------------------------------------------------------------------\n';
             for(var i = 0; i < tweets.length; i++) {
-                console.log('Time: ' + tweets[i].created_at);
-                console.log('Tweet: ' + tweets[i].text);
-                console.log('---------------------------------------------------------------------------------------------');
+                logs += 'Time: ' + tweets[i].created_at + '\n';
+                logs += 'Tweet: ' + tweets[i].text + '\n';
+                logs += '---------------------------------------------------------------------------------------------\n';
             }
         }
+        console.log(logs);
+        logResponse(logs);
     });
 }
 
 // Runs that spotify-this-song command
 function spotifyThisSong(song) {
+    var logs = '';
+
     if(!song) {
         song = 'the sign ace of base';
     }
@@ -73,22 +82,24 @@ function spotifyThisSong(song) {
     
     spot.search({ type: 'track', query: song }, function(err, data) {
         if (err) {
-            return console.log('Error: ' + err);
+            logs + = 'Error: ' + err + '\n';
         }
         else{
-            console.log('---------------------------------------------------------------------------------------------');
-            console.log('Artist(s): ' + data.tracks.items[0].name); 
-            console.log('Song Title: ' + data.tracks.items[0].album.artists[0].name);
-            console.log('Album: ' + data.tracks.items[0].album.name);
-            console.log('Preview Link: ' +data.tracks.items[0].album.artists[0].uri);
-            console.log('---------------------------------------------------------------------------------------------');
+            logs += '---------------------------------------------------------------------------------------------\n';
+            logs += 'Artist(s): ' + data.tracks.items[0].name + '\n'; 
+            logs += 'Song Title: ' + data.tracks.items[0].album.artists[0].name + '\n';
+            logs += 'Album: ' + data.tracks.items[0].album.name + '\n';
+            logs += 'Preview Link: ' +data.tracks.items[0].album.artists[0].uri + '\n';
+            logs += '---------------------------------------------------------------------------------------------\n';
         }
-    
+        console.log(logs);
+        logResponse(logs);
     });
 }
 
 // Runs the movie-this command
 function movieThis(movie) {
+    var logs = '';
     
     if(!movie) {
         movie = 'Mr.+Nobody';
@@ -99,18 +110,20 @@ function movieThis(movie) {
 
         // If the request is successful
         if (!error && response.statusCode === 200) {
-
-            console.log('---------------------------------------------------------------------------------------------');
-            console.log('Title: ' + JSON.parse(body).Title);
-            console.log('Release Year: ' + JSON.parse(body).Year);
-            console.log('IMBD Rating: ' + JSON.parse(body).imdbRating);
-            console.log('Rotten Tomatoes Rating: ' + JSON.parse(body).Ratings[1].Value);
-            console.log('Actors: ' + JSON.parse(body).Actors);
-            console.log('Plot: ' + JSON.parse(body).Plot);
-            console.log('Language: ' + JSON.parse(body).Language);
-            console.log('Production Country(ies): ' + JSON.parse(body).Country);
-            console.log('---------------------------------------------------------------------------------------------');
+            logs += '---------------------------------------------------------------------------------------------\n';
+            logs += 'Title: ' + JSON.parse(body).Title + '\n';
+            logs += 'Release Year: ' + JSON.parse(body).Year +'\n';
+            logs += 'IMBD Rating: ' + JSON.parse(body).imdbRating +'\n';
+            logs += 'Rotten Tomatoes Rating: ' + JSON.parse(body).Ratings[1].Value +'\n';
+            logs += 'Actors: ' + JSON.parse(body).Actors +'\n';
+            logs += 'Plot: ' + JSON.parse(body).Plot +'\n';
+            logs += 'Language: ' + JSON.parse(body).Language +'\n';
+            logs += 'Production Country(ies): ' + JSON.parse(body).Country +'\n';
+            logs += '---------------------------------------------------------------------------------------------\n';
+            
         }
+        console.log(logs);
+        logResponse(logs);
     });
 }
 
@@ -123,4 +136,13 @@ function doWhatItSays(err, data) {
     var dataArr = data.split(",");
     // We will then re-display the content as an array for later use.
     doThis(dataArr[0], dataArr[1]);
+}
+
+// Logs the response in logfile.txt
+function logResponse(response) {
+    fs.appendFile('logfile.txt', response, function(err) {
+        if (err) {
+            console.log(err);
+        }
+    });
 }
