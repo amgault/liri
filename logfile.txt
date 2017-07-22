@@ -26,3 +26,41 @@ Tweet: This is my first tweet!
 ---------------------------------------------------------------------------------------------
 You did not enter a valid command. Please enter one of the following: do-what-it-says, my-tweets, spotify-this-song, or movie-this.
 ---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+Title: Sweet Home Alabama
+Release Year: 2002
+IMBD Rating: 6.2
+Rotten Tomatoes Rating: 38%
+Actors: Reese Witherspoon, Josh Lucas, Patrick Dempsey, Candice Bergen
+Plot: A young woman who's reinvented herself as a New York socialite must return home to Alabama to obtain a divorce from her husband, after seven years of separation.
+Language: English
+Production Country(ies): USA
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+Artist(s): Little Do You Know
+Song Title: Alex & Sierra
+Album: It's About Us
+Preview Link: spotify:artist:58MLl9nC29IXbE4nEtuoP2
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+Artist(s): Heartbreaker
+Song Title: Justin Bieber
+Album: Journals
+Preview Link: spotify:artist:1uNFoZAHBGtllmzznpCI3s
+---------------------------------------------------------------------------------------------
+NaNTue Jul 18 16:17:29 +0000 2017
+Tweet: This is my first tweet!
+---------------------------------------------------------------------------------------------
+Time: Tue Jul 18 16:17:29 +0000 2017
+Tweet: This is my first tweet!
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+Time: Tue Jul 18 16:34:02 +0000 2017
+Tweet: This is an image https://t.co/0Kctfp6Juo
+---------------------------------------------------------------------------------------------
+Time: Tue Jul 18 16:22:46 +0000 2017
+Tweet: Trying to test liri bot!
+---------------------------------------------------------------------------------------------
+Time: Tue Jul 18 16:17:29 +0000 2017
+Tweet: This is my first tweet!
+---------------------------------------------------------------------------------------------

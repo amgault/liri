@@ -4,7 +4,7 @@ const spotify = require('node-spotify-api');
 const request = require('request');
 const fs = require('fs');
 
-const command = process.argv[2];
+var command = process.argv[2];
 var thing = '';
 
 getThing(doThis);
@@ -53,14 +53,14 @@ function myTweets() {
     client.get('statuses/user_timeline', params, function(err, tweets, response) {
         
         if(err) {
-            logs + = 'error: ' + err + '\n';
+            logs += 'error: ' + err + '\n';
         }
         if (!err) {
             logs += '---------------------------------------------------------------------------------------------\n';
             for(var i = 0; i < tweets.length; i++) {
-                logs += 'Time: ' + tweets[i].created_at + '\n';
-                logs += 'Tweet: ' + tweets[i].text + '\n';
-                logs += '---------------------------------------------------------------------------------------------\n';
+                logs += 'Time: ' + tweets[i].created_at + '\n'
+                    + 'Tweet: ' + tweets[i].text + '\n'
+                    + '---------------------------------------------------------------------------------------------\n';
             }
         }
         console.log(logs);
@@ -82,15 +82,16 @@ function spotifyThisSong(song) {
     
     spot.search({ type: 'track', query: song }, function(err, data) {
         if (err) {
-            logs + = 'Error: ' + err + '\n';
+            logs += 'Error: ' + err + '\n';
         }
         else{
-            logs += '---------------------------------------------------------------------------------------------\n';
-            logs += 'Artist(s): ' + data.tracks.items[0].name + '\n'; 
-            logs += 'Song Title: ' + data.tracks.items[0].album.artists[0].name + '\n';
-            logs += 'Album: ' + data.tracks.items[0].album.name + '\n';
-            logs += 'Preview Link: ' +data.tracks.items[0].album.artists[0].uri + '\n';
-            logs += '---------------------------------------------------------------------------------------------\n';
+            logs = 
+                '---------------------------------------------------------------------------------------------\n'
+                + 'Artist(s): ' + data.tracks.items[0].name + '\n' 
+                + 'Song Title: ' + data.tracks.items[0].album.artists[0].name + '\n'
+                + 'Album: ' + data.tracks.items[0].album.name + '\n'
+                + 'Preview Link: ' +data.tracks.items[0].album.artists[0].uri + '\n'
+                + '---------------------------------------------------------------------------------------------\n';
         }
         console.log(logs);
         logResponse(logs);
@@ -110,16 +111,17 @@ function movieThis(movie) {
 
         // If the request is successful
         if (!error && response.statusCode === 200) {
-            logs += '---------------------------------------------------------------------------------------------\n';
-            logs += 'Title: ' + JSON.parse(body).Title + '\n';
-            logs += 'Release Year: ' + JSON.parse(body).Year +'\n';
-            logs += 'IMBD Rating: ' + JSON.parse(body).imdbRating +'\n';
-            logs += 'Rotten Tomatoes Rating: ' + JSON.parse(body).Ratings[1].Value +'\n';
-            logs += 'Actors: ' + JSON.parse(body).Actors +'\n';
-            logs += 'Plot: ' + JSON.parse(body).Plot +'\n';
-            logs += 'Language: ' + JSON.parse(body).Language +'\n';
-            logs += 'Production Country(ies): ' + JSON.parse(body).Country +'\n';
-            logs += '---------------------------------------------------------------------------------------------\n';
+            logs = 
+                '---------------------------------------------------------------------------------------------\n'
+                + 'Title: ' + JSON.parse(body).Title + '\n'
+                + 'Release Year: ' + JSON.parse(body).Year +'\n'
+                + 'IMBD Rating: ' + JSON.parse(body).imdbRating +'\n'
+                + 'Rotten Tomatoes Rating: ' + JSON.parse(body).Ratings[1].Value +'\n'
+                + 'Actors: ' + JSON.parse(body).Actors +'\n'
+                + 'Plot: ' + JSON.parse(body).Plot +'\n'
+                + 'Language: ' + JSON.parse(body).Language +'\n'
+                + 'Production Country(ies): ' + JSON.parse(body).Country +'\n'
+                + '---------------------------------------------------------------------------------------------\n';
             
         }
         console.log(logs);
@@ -130,19 +132,20 @@ function movieThis(movie) {
 // Gets the command and thing from the text file and send them to doThis()
 function doWhatItSays(err, data) {
     if (err) {
-        return console.log(err);
+        return console.log('Error: ' + err);
     }
     // Then split it by commas (to make it more readable)
     var dataArr = data.split(",");
     // We will then re-display the content as an array for later use.
-    doThis(dataArr[0], dataArr[1]);
+    command = dataArr[0];
+    doThis(dataArr[1]);
 }
 
 // Logs the response in logfile.txt
 function logResponse(response) {
     fs.appendFile('logfile.txt', response, function(err) {
         if (err) {
-            console.log(err);
+            console.log('Error: ' + err);
         }
     });
 }
